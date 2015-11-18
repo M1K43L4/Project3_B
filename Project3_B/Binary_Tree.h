@@ -8,8 +8,9 @@
 #include <stdexcept>
 #include <string>
 #include <algorithm>
-#include "BTNode.h"
 #include <vector>
+
+#include "BTNode.h"
 
 template<typename Item_Type>
 class Binary_Tree

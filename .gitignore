@@ -229,3 +229,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Code::Blocks files
+*.cbp
+*.layout

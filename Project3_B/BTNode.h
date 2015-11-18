@@ -1,5 +1,6 @@
 #ifndef BTNODE_H_
 #define BTNODE_H_
+
 #include <sstream>
 
 /** A node for a Binary Tree. */

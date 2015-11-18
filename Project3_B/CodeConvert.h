@@ -1,11 +1,13 @@
 #ifndef CODECONVERT_H_
 #define CODECONVERT_H_
 
+#include <map>
+#include <string>
+
 #include "Binary_Tree.h"
 
 class CodeConvert{
 
-	//testing
 	/*
 		This class should be able to convert morse code into alphabetized letters (decode) and
 		should be able to convert alphabetized letters into morse code (endcode)
@@ -17,7 +19,10 @@ class CodeConvert{
 		- The dashes are represented as underscores		_
 	*/
 private:
-	/*You may use a binary search tree or a map to store the codes for letters. */
+
+    /** read the text file with the code
+        and make a map with code keys and character values */
+    std::map<std::string, char> load_from_file();
 public:
 
 };
