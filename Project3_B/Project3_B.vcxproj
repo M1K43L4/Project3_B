@@ -85,6 +85,9 @@
     <ClInclude Include="BTNode.h" />
     <ClInclude Include="CodeConvert.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="morse.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
