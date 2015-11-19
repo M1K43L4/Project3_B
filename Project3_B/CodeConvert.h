@@ -22,7 +22,8 @@ private:
 
     /** read the text file with the code
         and make a map with code keys and character values */
-    std::map<std::string, char> load_from_file();
+
+    std::map<std::string, char> load_from_file(); //function load_from_file() will return a map
 public:
 
 };
