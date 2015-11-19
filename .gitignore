@@ -233,3 +233,4 @@ $RECYCLE.BIN/
 # Code::Blocks files
 *.cbp
 *.layout
+*.depend
