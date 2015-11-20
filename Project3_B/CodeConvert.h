@@ -6,6 +6,14 @@
 
 #include "Binary_Tree.h"
 
+struct CharData{
+    /** for the creation of the binary tree,
+        the number of dots in the character's code is needed
+        this is used in function create_vector */
+    char character;
+    int dot_count;
+};
+
 class CodeConvert{
 
 	/*
@@ -19,12 +27,18 @@ class CodeConvert{
 		- The dashes are represented as underscores		_
 	*/
 private:
-
     /** read the text file with the code
-        and make a map with code keys and character values */
+        and fill the map with code keys and character values
+        precondition: map_of_codes should be empty
+        returns false if file could not be read, true if it is read */
+    bool load_map_from_file(std::map<std::string, CharData>& map_of_codes);
 
-    std::map<std::string, char> load_from_file(); //function load_from_file() will return a map
+    /** fill the vector used to create the code tree
+        precondition: vector_for_tree_creation should be empty */
+    void create_vector(std::vector<char>& vector_for_tree_creation, const std::map<std::string, CharData>& map_of_codes);
+
 public:
+    void load_from_file();
 
 };
 
