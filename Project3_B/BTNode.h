@@ -2,6 +2,7 @@
 #define BTNODE_H_
 
 #include <sstream>
+#include <string>
 
 /** A node for a Binary Tree. */
 template<typename Item_Type>

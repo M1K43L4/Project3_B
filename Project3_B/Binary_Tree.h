@@ -2,6 +2,9 @@
 #define BINARY_TREE_H
 
 /** Class for a binary tree. */
+/** This is Dr. Kuhail's implementation except for
+    the addition of overloaded read_tree and read_binary_tree for char
+    (which is still Dr. Kuhail's code, just string replaced with char). */
 
 #include <cstddef>
 #include <sstream>
@@ -61,6 +64,10 @@ public:
 	void read_tree(std::vector<std::string>& text);
 
 	Binary_Tree<Item_Type> read_binary_tree(std::vector<std::string>& text, int& i);
+
+	void read_tree(std::vector<char>& char_data);
+
+	Binary_Tree<Item_Type> read_binary_tree(std::vector<char>& char_data, int& i);
 
 	/** Return a string representation of the root */
 	std::string root_to_string() const {
@@ -198,10 +205,6 @@ std::string Binary_Tree<Item_Type>::to_string() const {
 	return os.str();
 }
 
-/*string_tokenizer st(line, "+ ");
-while (st.has_more_tokens()) {
-string term = st.next_token();*/
-
 template<typename Item_Type>
 void Binary_Tree<Item_Type>::read_tree(std::vector<std::string>& text){
 	int i = 0;
@@ -209,8 +212,6 @@ void Binary_Tree<Item_Type>::read_tree(std::vector<std::string>& text){
 	setRoot(newTree.getRoot());
 }
 
-// TODO: these parts (above and below) may need to change
-// items should be characters instead of strings
 template<typename Item_Type>
 Binary_Tree<Item_Type> Binary_Tree<Item_Type>::
 read_binary_tree(std::vector<std::string>& text, int& i){
@@ -224,6 +225,27 @@ read_binary_tree(std::vector<std::string>& text, int& i){
 		//i = i + 1;
 		Binary_Tree<Item_Type> right = read_binary_tree(text, ++i);
 		return Binary_Tree<Item_Type>(txt, left, right);
+	}
+}
+
+// overloads for char
+template<typename Item_Type>
+void Binary_Tree<Item_Type>::read_tree(std::vector<char>& char_data){
+	int i = 0;
+	Binary_Tree<Item_Type> newTree = read_binary_tree(char_data, i);
+	setRoot(newTree.getRoot());
+}
+
+template<typename Item_Type>
+Binary_Tree<Item_Type> Binary_Tree<Item_Type>::read_binary_tree(std::vector<char>& char_data, int& i){
+	if (i > char_data.size() - 1 || char_data[i] == 0) {
+		return Binary_Tree<Item_Type>();
+	}
+	else {
+		char character = char_data[i];
+		Binary_Tree<Item_Type> left = read_binary_tree(char_data, ++i);
+		Binary_Tree<Item_Type> right = read_binary_tree(char_data, ++i);
+		return Binary_Tree<Item_Type>(character, left, right);
 	}
 }
 
