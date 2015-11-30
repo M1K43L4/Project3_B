@@ -5,8 +5,8 @@
 void doug_test(){
     CodeConvert a;
     a.load_from_file();
-
-
+	std::cout << a.decode("..._ ..._");
+	std::cout << a.decode(".......");
 }
 
 int main(){
