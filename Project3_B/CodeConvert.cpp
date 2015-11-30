@@ -75,3 +75,55 @@ void CodeConvert::load_from_file(){
     std:: cout << decode_tree.to_string();
 
 }
+
+std::string CodeConvert::decode(std::string morsecode){
+	auto index = morsecode.begin();
+	std::string resultstring="";
+	Binary_Tree<char> traversal_tree;
+
+	while (index != morsecode.end()){
+		
+		traversal_tree = decode_tree; // traversal starts again back at the root of the tree
+		
+		while (index != morsecode.end() && !iswspace(*index)){
+			
+			if(*index == DOT){
+
+				//traverse tree until we find a character:
+				// a . means go left in the tree
+				// a _ means go right in the tree
+				
+				// traversal tree used to be root, but now has a new root (left subtree)
+				
+				try{ // check to see if it actually has a left subtree
+					traversal_tree = traversal_tree.get_left_subtree();
+				}
+				catch (std::invalid_argument exception){
+					return " Error: Invalid code";
+				}
+			}
+			else{ // if it's not a dot or a space, it's a dash
+				try{ // similar check for right subtree
+					traversal_tree = traversal_tree.get_right_subtree();
+				}
+				catch (std::invalid_argument exception){
+					return " Error: Invalid code";
+				}
+			}
+			++index;
+		}
+
+		if (index != morsecode.end()){
+			++index;
+		}
+		// if it gets to this point, it is a white space
+
+
+		//resultstring += whatever char is returned
+		resultstring += traversal_tree.get_data();
+
+		//continue until end of morse code
+	}
+	
+	return resultstring;
+}
