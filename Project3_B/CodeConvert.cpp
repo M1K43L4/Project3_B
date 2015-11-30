@@ -7,6 +7,8 @@
 #include <vector>
 #include <algorithm>  // std::count
 
+#include "Binary_Tree.h"
+
 const char CodeConvert::DOT = '.';  // char used for dot
 
 bool CodeConvert::load_map_from_file(std::map<std::string, CharData>& map_for_tree_creation){
@@ -76,54 +78,51 @@ void CodeConvert::load_from_file(){
 
 }
 
-std::string CodeConvert::decode(std::string morsecode){
-	auto index = morsecode.begin();
-	std::string resultstring="";
+std::string CodeConvert::decode(std::string morse_code){
+	auto code_itr = morse_code.begin();
+	std::string result_string = "";  // return value
 	Binary_Tree<char> traversal_tree;
 
-	while (index != morsecode.end()){
-		
-		traversal_tree = decode_tree; // traversal starts again back at the root of the tree
-		
-		while (index != morsecode.end() && !iswspace(*index)){
-			
-			if(*index == DOT){
+	while (code_itr != morse_code.end()){  // this loop one iteration per decoded character
 
-				//traverse tree until we find a character:
-				// a . means go left in the tree
-				// a _ means go right in the tree
-				
-				// traversal tree used to be root, but now has a new root (left subtree)
-				
-				try{ // check to see if it actually has a left subtree
+		traversal_tree = decode_tree; // traversal starts again back at the root of the tree
+
+		while (code_itr != morse_code.end() && !iswspace(*code_itr)){  // this loop one iteration per dot or dash
+
+			// a . means go left in the tree
+			// a _ means go right in the tree
+
+			if(*code_itr == DOT){
+				try{  // check to see if it actually has a left subtree
 					traversal_tree = traversal_tree.get_left_subtree();
+					// traversal tree used to be root, but now has a new root (left subtree)
 				}
 				catch (std::invalid_argument exception){
-					return " Error: Invalid code";
+					std::cerr << "Error: invalid code" << std::endl;
+					return "";
 				}
 			}
-			else{ // if it's not a dot or a space, it's a dash
-				try{ // similar check for right subtree
+			else{  // if it's not a dot or a space, it's a dash
+				try{  // similar check for right subtree
 					traversal_tree = traversal_tree.get_right_subtree();
 				}
 				catch (std::invalid_argument exception){
-					return " Error: Invalid code";
+				    std::cerr << "Error: invalid code" << std::endl;
+					return "";
 				}
 			}
-			++index;
+			++code_itr;
 		}
 
-		if (index != morsecode.end()){
-			++index;
+		if (code_itr != morse_code.end()){
+			++code_itr;
 		}
-		// if it gets to this point, it is a white space
 
-
-		//resultstring += whatever char is returned
-		resultstring += traversal_tree.get_data();
+		// result_string += whatever char the traversal tree is currently at
+		result_string += traversal_tree.get_data();
 
 		//continue until end of morse code
 	}
-	
-	return resultstring;
+
+	return result_string;
 }
