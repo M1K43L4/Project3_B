@@ -126,3 +126,20 @@ std::string CodeConvert::decode(std::string morse_code){
 
 	return result_string;
 }
+
+
+std::string CodeConvert::encode(std::string somecharacters){
+
+	std::string resultstring;
+	auto index = somecharacters.begin();
+	while (index != somecharacters.end()){
+		if (encode_map.find(*index) == encode_map.end()){
+			//error, key not found
+		}
+		else{
+			resultstring += encode_map[*index];
+		}
+	}
+
+	return resultstring;
+}
