@@ -3,7 +3,12 @@ assumptions
 If the file is not present in the working directory, or not readable, it makes an empty decoding tree (with only the dummy node at the root). So any encoding or decoding will not be valid.
 
 valid data for tree with no blank nodes in the middle
-'.' is dot
-dash can be any char with ascii value > '.' ('_' works '~' works '-' doesn't work)
 
-trying to decode an invalid code returns error string instead of decoded string
+for decoding:
+'.' is dot
+any whitespace is delimiter
+anything else is considered dash, but will only decode correctly if dash ascii value > '.' ('_' works '~' works '-' doesn't work)
+(If this rule is not followed, the decoding function will work correctly. But the decoding binary tree will be built incorrectly if this rule isn't followed in the input file.)
+
+trying to decode an invalid code or trying to encode a string with unsupported characters
+prints an error message to std::cerr and returns an empty string
