@@ -75,3 +75,29 @@ void CodeConvert::load_from_file(){
     std:: cout << decode_tree.to_string();
 
 }
+
+std::string CodeConvert::decode(std::string morsecode){
+	auto index = morsecode.begin();
+	std::string resultstring="";
+	while (index != morsecode.end()){
+		while (iswspace(*index) == false){
+			if (iswspace(*index)){
+				std::cout << "";//throw the space
+				break;
+			}
+			else{
+
+				//traverse tree until we find a character:
+				// a . means go left in the tree
+				// a _ means go right in the tree
+				
+
+				//resultstring += whatever char is returned
+				break;
+			}
+		}
+		index++; //continue until end of morse code
+	}
+	
+	return resultstring;
+}

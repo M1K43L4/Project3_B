@@ -46,6 +46,7 @@ private:
 
 public:
     void load_from_file();
+	std::string decode(std::string);
 
 };
 
