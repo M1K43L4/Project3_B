@@ -123,6 +123,31 @@ std::string CodeConvert::decode(std::string morse_code){
 
 		//continue until end of morse code
 	}
-
+	result_string += '\n'; // end this line since this command is done
 	return result_string;
+}
+
+
+std::string CodeConvert::encode(std::string somecharacters){
+
+	std::string resultstring = "";
+	auto index = somecharacters.begin();
+	while (index != somecharacters.end()){
+		if (encode_map.find(*index) == encode_map.end()){
+			//error, key not found
+			if (iswspace(*index)){
+				resultstring += " ";
+			}
+			else{
+				std::cerr << "Error: invalid code" << std::endl;
+			}
+		}
+		else{
+			resultstring += encode_map[*index];
+		}
+
+		++index;
+	}
+	resultstring += '\n';// end this line since this command is done
+	return resultstring;
 }

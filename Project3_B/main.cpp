@@ -5,8 +5,14 @@
 void doug_test(){
     CodeConvert a;
     a.load_from_file();
+
+	std::cout << std::endl << std::endl;
+
 	std::cout << a.decode("..._ ..._");
 	std::cout << a.decode(".......");
+	std::cout << a.encode("vv");
+	std::cout << a.encode("v v");
+	std::cout << a.encode("?");
 }
 
 int main(){
