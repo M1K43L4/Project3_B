@@ -46,8 +46,8 @@ private:
 
 public:
     void load_from_file();
-	std::string decode(std::string);
-	std::string encode(std::string);
+	std::string decode(std::string morse_code);
+	std::string encode(std::string characters_to_convert);
 
 };
 
