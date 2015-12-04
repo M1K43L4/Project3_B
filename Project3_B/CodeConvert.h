@@ -20,14 +20,9 @@ class CodeConvert{
 
 	/*
 		This class should be able to convert morse code into alphabetized letters (decode) and
-		should be able to convert alphabetized letters into morse code (endcode)
+		should be able to convert alphabetized letters into morse code (encode)
 	*/
 
-	/* For the morse code---
-		Each letter consists of a series of dots and dashes:
-		- The dots are represented as periods			.
-		- The dashes are represented as underscores		_
-	*/
 private:
     static const char DOT;  // char used for dot
 
@@ -45,8 +40,14 @@ private:
     void create_vector(std::vector<char>& vector_for_tree_creation, const std::map<std::string, CharData>& map_for_tree_creation);
 
 public:
+    /** read the morse code from file "morse.txt"
+        and create encode_map and decode_tree */
     void load_from_file();
+
+    /** input morse code, output normal word */
 	std::string decode(std::string morse_code);
+
+	/** input normal word, output morse code */
 	std::string encode(std::string characters_to_convert);
 
 };
